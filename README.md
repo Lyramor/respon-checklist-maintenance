@@ -89,14 +89,35 @@ Buka http://localhost:8000
 
 ## Akun bawaan
 
-Dibuat oleh seeder.
+Dibuat oleh seeder. Semua kata sandinya `password`.
 
-| Peran | Username | Password |
+| Peran | Username | Keterangan |
 | --- | --- | --- |
-| Admin | `admin` | `password` |
-| Responden | `responden` | `password` |
+| Admin | `admin` | Akses penuh |
+| Responden | `responden` | Akun kosong tanpa isian |
+| Responden | `agus_line1` | Petugas Line 1 |
+| Responden | `dewi_line2` | Petugas Line 2 |
+| Responden | `rizky_line3` | Petugas Line 3 |
+| Responden | `siti_line5` | Petugas Line 5 |
 
 Login menerima username maupun email. Ganti kata sandi admin sebelum dipakai di lingkungan nyata.
+
+## Data contoh
+
+`RespondenChecklistSeeder` mengisi satu bulan berjalan secara penuh: empat petugas, satu orang
+memegang satu line, masing masing mengisi kelima minggu. Hasilnya 20 slot terisi, sama dengan
+jumlah kolom pada sheet Excel bulanan, jadi dashboard admin langsung menampilkan cakupan 100 persen
+dan laporan yang diekspor terisi penuh.
+
+Sebagian besar jawaban berada pada kondisi sesuai standar, dengan beberapa temuan kuning dan merah
+yang sengaja ditanam supaya pewarnaan pada laporan dan halaman detail ikut terlihat. Seeder ini aman
+dijalankan berulang kali karena isian milik keempat petugas pada periode tersebut dihapus dulu
+sebelum dibuat ulang.
+
+```bash
+php artisan db:seed                                   # semua akun plus data sebulan
+php artisan db:seed --class=RespondenChecklistSeeder  # hanya data checklistnya
+```
 
 ## Peran
 
