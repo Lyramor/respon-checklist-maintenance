@@ -7,7 +7,7 @@ yang sudah berjalan di server yang sama.
 | Item | Nilai |
 | --- | --- |
 | Domain | `formmaintenance.krevostudio.com` |
-| IP origin | `167.253.158.192` |
+| IP origin | lihat dashboard Cloudflare, sengaja tidak ditulis di sini |
 | DNS | Cloudflare, record `A`, status **Proxied** (awan oranye) |
 | Zona waktu | `Asia/Jakarta` (WIB) |
 | Direktori | `/var/www/formmaintenance` |
@@ -453,9 +453,15 @@ Record sudah ada dan sudah benar:
 
 | Type | Name | Content | Proxy |
 | --- | --- | --- | --- |
-| A | `formmaintenance` | `167.253.158.192` | Proxied |
+| A | `formmaintenance` | IP origin server | Proxied |
 
 Biarkan tetap **Proxied**. Status inilah yang membuat IP server tidak terlihat publik.
+
+> IP origin sengaja tidak dicantumkan di berkas ini karena repositorinya publik. Menuliskan
+> IP origin di tempat yang bisa dibaca umum membatalkan perlindungan Cloudflare, sebab
+> penyerang bisa menghubungi server secara langsung tanpa melewati Cloudflare sama sekali,
+> dan itu ikut membahayakan domain lain di server yang sama. Nilainya bisa dilihat kapan
+> saja di dashboard Cloudflare pada menu DNS.
 
 ### 10b. Sertifikat Origin
 
