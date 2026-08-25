@@ -7,8 +7,31 @@
 
     <title inertia>{{ config('app.name', 'Checklist Monitoring Maintenance') }}</title>
 
-    <meta name="description" content="Pencatatan checklist monitoring maintenance area HCA per minggu dan per line.">
+    @php
+        $ringkasan = 'Pencatatan checklist maintenance dan infrastruktur area HCA, per week dan per line, lengkap dengan laporan Excel bulanan.';
+        $pratinjau = url('/og-image.png');
+    @endphp
+
+    <meta name="description" content="{{ $ringkasan }}">
     <meta name="theme-color" content="#1F4E5F">
+
+    {{-- Tampilan tautan saat dibagikan di WhatsApp, Telegram, Slack, dan sejenisnya. --}}
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="{{ config('app.name') }}">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:title" content="{{ config('app.name') }}">
+    <meta property="og:description" content="{{ $ringkasan }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:image" content="{{ $pratinjau }}">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Checklist Monitoring Maintenance area HCA">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ config('app.name') }}">
+    <meta name="twitter:description" content="{{ $ringkasan }}">
+    <meta name="twitter:image" content="{{ $pratinjau }}">
     <meta name="color-scheme" content="light">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">

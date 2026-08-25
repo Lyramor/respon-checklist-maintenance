@@ -19,6 +19,16 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        // Aplikasi berjalan di belakang Cloudflare. Tanpa ini Laravel menganggap
+        // koneksi sebagai http dan mencatat IP milik Cloudflare, bukan IP petugas,
+        // sehingga tautan yang dibuat salah skema dan log aktivitas jadi tidak berguna.
+        // Aman memakai '*' karena firewall origin hanya membuka port web untuk
+        // rentang IP Cloudflare, jadi header ini tidak bisa dipalsukan dari luar.
+        $middleware->trustProxies(at: '*', headers: Request::HEADER_X_FORWARDED_FOR
+            | Request::HEADER_X_FORWARDED_HOST
+            | Request::HEADER_X_FORWARDED_PORT
+            | Request::HEADER_X_FORWARDED_PROTO);
+
         $middleware->web(append: [
             HandleInertiaRequests::class,
             AddLinkHeadersForPreloadedAssets::class,

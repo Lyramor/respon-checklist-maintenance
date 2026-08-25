@@ -143,6 +143,24 @@ Bulan yang belum ada isiannya tetap bisa diekspor dan menghasilkan template koso
 php artisan test
 ```
 
+## Aset brand
+
+Favicon, seluruh ikon PWA, dan gambar pratinjau tautan dibuat oleh satu skrip supaya
+bentuknya selalu seragam. Aplikasi ini tidak memakai ikon bawaan Laravel.
+
+```bash
+php scripts/generate-brand-assets.php
+```
+
+Hasilnya: `public/favicon.ico`, `public/icons/*.png`, dan `public/og-image.png` berukuran
+1200 kali 630 yang dipakai saat tautan dibagikan lewat WhatsApp, Telegram, atau Slack.
+
+## Pemasangan di server
+
+Langkah lengkap memasang aplikasi ini di `formmaintenance.krevostudio.com` lewat Cloudflare,
+termasuk cara memisahkannya dari domain lain di server yang sama dan menyeragamkan zona
+waktu WIB, ada di [DEPLOYMENT.md](DEPLOYMENT.md).
+
 ## Kredit
 
 Dibuat oleh [krevostudio.com](https://krevostudio.com)
