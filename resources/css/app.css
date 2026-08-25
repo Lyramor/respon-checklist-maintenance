@@ -1,0 +1,83 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../js/**/*.{ts,tsx}';
+
+/*
+ * Token layer. Colors are lifted from the client's own Excel report header (#1F4E5F)
+ * so the web app and the downloaded workbook read as one system.
+ * Nothing below this block may be redefined inside a component.
+ */
+@theme {
+    --color-ink: #10181b;
+    --color-ink-soft: #55636a;
+    --color-surface: #ffffff;
+    --color-canvas: #f1f4f4;
+    --color-line: #d6ddde;
+
+    --color-brand: #1f4e5f;
+    --color-brand-ink: #163b48;
+    --color-brand-soft: #d9e7e9;
+
+    --color-ok: #2f6b3a;
+    --color-ok-soft: #e3f0dc;
+    --color-warn: #7a5c05;
+    --color-warn-soft: #fbefc8;
+    --color-bad: #9b2c2c;
+    --color-bad-soft: #f7dede;
+
+    --font-display: 'IBM Plex Sans Condensed', 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', 'Consolas', monospace;
+
+    /* mixed radius policy: controls 4px, cards 10px, chips full */
+    --radius-control: 4px;
+    --radius-card: 10px;
+
+    --shadow-panel: 0 1px 0 0 rgb(16 24 27 / 0.04), 0 1px 3px 0 rgb(16 24 27 / 0.06);
+
+    --spacing-sidebar: 248px;
+}
+
+@layer base {
+    html {
+        background-color: var(--color-canvas);
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+        background-color: var(--color-canvas);
+        color: var(--color-ink);
+        font-family: var(--font-sans);
+        font-feature-settings: 'cv05' 1;
+    }
+
+    ::selection {
+        background-color: var(--color-brand-soft);
+        color: var(--color-brand-ink);
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--color-brand);
+        outline-offset: 2px;
+    }
+
+    h1,
+    h2,
+    h3 {
+        font-family: var(--font-display);
+        letter-spacing: -0.01em;
+    }
+
+    /* numerals in tables and codes stay monospaced and aligned */
+    [data-numeric] {
+        font-family: var(--font-mono);
+        font-variant-numeric: tabular-nums;
+    }
+}
+
+@utility scroll-panel {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-line) transparent;
+}
